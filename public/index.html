@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CipherBox - Secure String Encryption</title>
+
     <link rel="stylesheet" href="../css/styles.css">
 
-    <!-- Importing Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lekton&family=Major+Mono+Display&display=swap" rel="stylesheet">
 
-    <title>CipherBox - Secure String Encryption</title>
-
-    <!-- Importing CryptoJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsencrypt@3.0.0/bin/jsencrypt.min.js"></script>
-
-
-    <!-- Updated Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:">
 </head>
 <body>
+    <div id="splashScreen" class="splash-screen" role="status" aria-live="polite">
+        <div class="splash-content">
+            <div class="splash-brand">CipherBox</div>
+            <div class="splash-loader"></div>
+            <p id="splashMessage">Preparing secure channels...</p>
+            <small>Encrypting thoughts, one key at a time.</small>
+        </div>
+    </div>
+
     <header>
         <nav>
             <h1><a href="/">CipherBox</a></h1>
@@ -33,7 +36,8 @@
     <div class="container">
         <main>
             <form action="">
-                <textarea id="input" cols="30" rows="10" placeholder="Enter Your text here..."></textarea>
+                <textarea id="input" cols="30" rows="10" placeholder="Enter your text here..."></textarea>
+
                 <select id="algorithmSelector">
                     <option value="" hidden>Choose your algorithm</option>
                     <option value="AES">AES</option>
@@ -42,27 +46,32 @@
                     <option value="SHA-256">SHA-256</option>
                     <option value="DES">DES</option>
                 </select>
+
                 <button id="encryptButton" class="one" type="button">
-                    <img src="../assets/lock.png" alt="image"> Encrypt
+                    <img src="../assets/lock.png" alt="Encrypt icon">
+                    Encrypt
                 </button>
+
                 <button id="decryptButton" class="two" type="button">
-                    <img src="../assets/Vector.png" alt="image"> Decrypt
+                    <img src="../assets/Vector.png" alt="Decrypt icon">
+                    Decrypt
                 </button>
             </form>
 
             <div class="output">
                 <div class="label">
-                    Encrypted or Decrypted text:
-                    <button><img src="../assets/maximize-2.png" alt=""></button>
+                    <span>Encrypted or Decrypted text</span>
+                    <button type="button" aria-label="Expand output">
+                        <img src="../assets/maximize-2.png" alt="Expand output">
+                    </button>
                 </div>
+
                 <p id="encryptedResult"></p>
                 <p id="decryptedResult"></p>
             </div>
         </main>
     </div>
 
-    <!-- Custom JavaScript -->
     <script src="js/app.js" defer></script>
-
 </body>
 </html>
