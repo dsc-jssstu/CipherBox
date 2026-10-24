@@ -1,68 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CipherBox - Secure String Encryption</title>
-
     <link rel="stylesheet" href="../css/styles.css">
-
+    <!-- Importing fonts from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lekton&family=Major+Mono+Display&display=swap" rel="stylesheet">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jsencrypt@3.0.0/bin/jsencrypt.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lekton&family=Major+Mono+Display&display=swap"
+        rel="stylesheet">
+    <title>About Us - CipherBox</title>
 </head>
+
 <body>
     <header>
         <nav>
             <h1><a href="/">CipherBox</a></h1>
             <ul>
-                <li><a href="About.html">About Us</a></li>
+                <li><a href="About.html">About Us</a></li><!-- Added "About Us" link -->
             </ul>
         </nav>
     </header>
-
     <div class="container">
         <main>
-            <form action="">
-                <textarea id="input" cols="30" rows="10" placeholder="Enter your text here..."></textarea>
+            <section>
+                <h1>About CipherBox</h1>
 
-                <select id="algorithmSelector">
-                    <option value="" hidden>Choose your algorithm</option>
-                    <option value="AES">AES</option>
-                    <option value="RSA">RSA</option>
-                    <option value="MD5">MD5</option>
-                    <option value="SHA-256">SHA-256</option>
-                    <option value="DES">DES</option>
-                </select>
+                <p> CipherBox is an open-source web application designed to empower users with the ability to encrypt
+                    and decrypt strings using state-of-the-art cryptographic techniques. With an intuitive user
+                    interface, our application ensures data security and privacy by enabling users to safeguard their
+                    sensitive information effortlessly. Join us in advancing data security in the digital realm and
+                    contribute to this project.
 
-                <button id="encryptButton" class="one" type="button">
-                    <img src="../assets/lock.png" alt="Encrypt icon">
-                    Encrypt
-                </button>
+                </p>
+            </section>
+            <section>
+                <h1>Our contributers</h1>
 
-                <button id="decryptButton" class="two" type="button">
-                    <img src="../assets/Vector.png" alt="Decrypt icon">
-                    Decrypt
-                </button>
-            </form>
+                <p>A big thank you to all the contributors who have helped improve and develop CipherBox. Your
+                    contributions are highly appreciated.
 
-            <div class="output">
-                <div class="label">
-                    <span>Encrypted or Decrypted text</span>
-                    <button type="button" aria-label="Expand output">
-                        <img src="../assets/maximize-2.png" alt="Expand output">
-                    </button>
-                </div>
+                </p>
+                <a href="https://github.com/gdsc-jssstu/cipherbox/graphs/contributors">
+                    <img src="https://contrib.rocks/image?repo=gdsc-jssstu/cipherbox" />
+                </a>
+            </section>
 
-                <p id="encryptedResult"></p>
-                <p id="decryptedResult"></p>
-            </div>
         </main>
     </div>
-
-    <script src="js/app.js" defer></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
