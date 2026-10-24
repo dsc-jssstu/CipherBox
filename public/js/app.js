@@ -1,90 +1,154 @@
-// AES encryption function using CryptoJS
+const rsaKeyPair = new JSEncrypt({ default_key_size: 2048 });
+rsaKeyPair.getKey();
+
+const splashMessages = [
+    "Initializing secure vault...",
+    "Generating cipher keys...",
+    "Checking for hidden messages...",
+    "Encrypting thoughts, one key at a time.",
+    "Shaping secure channels...",
+    "CipherBox booting up..."
+];
+
 function aesEncrypt(inputString) {
-    return CryptoJS.AES.encrypt(inputString, 'secret-key').toString();
+    return CryptoJS.AES.encrypt(inputString, 'cipherbox-secret-key').toString();
 }
 
-// AES decryption function using CryptoJS
 function aesDecrypt(encryptedString) {
-    const bytes = CryptoJS.AES.decrypt(encryptedString, 'secret-key');
-    return bytes.toString(CryptoJS.enc.Utf8);
+    try {
+        const bytes = CryptoJS.AES.decrypt(encryptedString, 'cipherbox-secret-key');
+        const plainText = bytes.toString(CryptoJS.enc.Utf8);
+        return plainText || 'Unable to decrypt this value.';
+    } catch (error) {
+        return 'Invalid AES input.';
+    }
 }
 
-// MD5 hashing function (no decryption)
 function md5Hash(inputString) {
     return CryptoJS.MD5(inputString).toString();
 }
 
-// SHA-256 hashing function (no decryption)
 function sha256Hash(inputString) {
     return CryptoJS.SHA256(inputString).toString();
 }
 
-// RSA encryption using JSEncrypt
 function rsaEncrypt(inputString) {
-    const encrypt = new JSEncrypt();
-    encrypt.setPublicKey('YOUR_PUBLIC_KEY_HERE');
-    return encrypt.encrypt(inputString);
+    try {
+        const encrypt = new JSEncrypt();
+        encrypt.setPublicKey(rsaKeyPair.getPublicKey());
+        const encrypted = encrypt.encrypt(inputString);
+        return encrypted || 'RSA encryption failed.';
+    } catch (error) {
+        return 'RSA encryption failed.';
+    }
 }
 
-// RSA decryption using JSEncrypt
 function rsaDecrypt(encryptedString) {
-    const decrypt = new JSEncrypt();
-    decrypt.setPrivateKey('YOUR_PRIVATE_KEY_HERE');
-    return decrypt.decrypt(encryptedString);
+    try {
+        const decrypt = new JSEncrypt();
+        decrypt.setPrivateKey(rsaKeyPair.getPrivateKey());
+
+        const plainText = decrypt.decrypt(encryptedString);
+        return plainText || 'Unable to decrypt this RSA value.';
+    } catch (error) {
+        return 'Invalid RSA input.';
+    }
 }
 
-// DES encryption using CryptoJS
 function desEncrypt(inputString) {
-    return CryptoJS.DES.encrypt(inputString, 'secret-key').toString();
+    return CryptoJS.DES.encrypt(inputString, 'cipherbox-secret-key').toString();
 }
 
-// DES decryption using CryptoJS
 function desDecrypt(encryptedString) {
-    const bytes = CryptoJS.DES.decrypt(encryptedString, 'secret-key');
-    return bytes.toString(CryptoJS.enc.Utf8);
+    try {
+        const bytes = CryptoJS.DES.decrypt(encryptedString, 'cipherbox-secret-key');
+        const plainText = bytes.toString(CryptoJS.enc.Utf8);
+        return plainText || 'Unable to decrypt this value.';
+    } catch (error) {
+        return 'Invalid DES input.';
+    }
 }
 
-// Encryption handler based on algorithm
 function encryptString(algorithm, inputString) {
-    if (algorithm === 'AES') {
-        return aesEncrypt(inputString);
-    } else if (algorithm === 'MD5') {
-        return md5Hash(inputString);
-    } else if (algorithm === 'SHA-256') {
-        return sha256Hash(inputString);
-    } else if (algorithm === 'RSA') {
-        return rsaEncrypt(inputString);
-    } else if (algorithm === 'DES') {
-        return desEncrypt(inputString);
-    } else {
-        return 'Unsupported algorithm';
+    if (!inputString || !inputString.trim()) {
+        return 'Please enter text to encrypt.';
+    }
+
+    switch (algorithm) {
+        case 'AES':
+            return aesEncrypt(inputString);
+        case 'MD5':
+            return md5Hash(inputString);
+        case 'SHA-256':
+            return sha256Hash(inputString);
+        case 'RSA':
+            return rsaEncrypt(inputString);
+        case 'DES':
+            return desEncrypt(inputString);
+        default:
+            return 'Unsupported algorithm';
     }
 }
 
-// Decryption handler based on algorithm
 function decryptString(algorithm, encryptedString) {
-    if (algorithm === 'AES') {
-        return aesDecrypt(encryptedString);
-    } else if (algorithm === 'RSA') {
-        return rsaDecrypt(encryptedString);
-    } else if (algorithm === 'DES') {
-        return desDecrypt(encryptedString);
-    } else {
-        return 'Unsupported algorithm for decryption';
+    if (!encryptedString || !encryptedString.trim()) {
+        return 'Please enter text to decrypt.';
+    }
+
+    switch (algorithm) {
+        case 'AES':
+            return aesDecrypt(encryptedString);
+        case 'RSA':
+            return rsaDecrypt(encryptedString);
+        case 'DES':
+            return desDecrypt(encryptedString);
+        case 'MD5':
+            return 'MD5 is a hash function and cannot be decrypted.';
+        case 'SHA-256':
+            return 'SHA-256 is a hash function and cannot be decrypted.';
+        default:
+            return 'Unsupported algorithm for decryption';
     }
 }
 
-// Event listeners
-document.getElementById('encryptButton').addEventListener('click', function () {
-    const algorithm = document.getElementById('algorithmSelector').value;
-    const inputString = document.getElementById('input').value;
-    const encryptedResult = encryptString(algorithm, inputString);
-    document.getElementById('encryptedResult').textContent = encryptedResult;
-});
+document.addEventListener('DOMContentLoaded', function () {
+    const splashScreen = document.getElementById('splashScreen');
+    const splashMessage = document.getElementById('splashMessage');
 
-document.getElementById('decryptButton').addEventListener('click', function () {
-    const algorithm = document.getElementById('algorithmSelector').value;
-    const encryptedString = document.getElementById('encryptedResult').textContent;
-    const decryptedResult = decryptString(algorithm, encryptedString);
-    document.getElementById('decryptedResult').textContent = decryptedResult;
+    if (splashScreen && splashMessage) {
+        const randomIndex = Math.floor(Math.random() * splashMessages.length);
+        splashMessage.textContent = splashMessages[randomIndex];
+
+        setTimeout(() => {
+            splashScreen.classList.add('hidden');
+        }, 2200);
+    }
+
+    const inputField = document.getElementById('input');
+    const algorithmSelector = document.getElementById('algorithmSelector');
+    const encryptButton = document.getElementById('encryptButton');
+    const decryptButton = document.getElementById('decryptButton');
+    const encryptedResult = document.getElementById('encryptedResult');
+    const decryptedResult = document.getElementById('decryptedResult');
+
+    if (!inputField || !algorithmSelector || !encryptButton || !decryptButton || !encryptedResult || !decryptedResult) {
+        return;
+    }
+
+    encryptButton.addEventListener('click', function () {
+        const algorithm = algorithmSelector.value;
+        const inputString = inputField.value;
+
+        const encryptedText = encryptString(algorithm, inputString);
+        encryptedResult.textContent = encryptedText;
+        decryptedResult.textContent = '';
+    });
+
+    decryptButton.addEventListener('click', function () {
+        const algorithm = algorithmSelector.value;
+        const encryptedString = encryptedResult.textContent;
+
+        const decryptedText = decryptString(algorithm, encryptedString);
+        decryptedResult.textContent = decryptedText;
+    });
 });

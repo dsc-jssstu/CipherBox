@@ -1,106 +1,205 @@
 # CipherBox
-CipherBox is an open-source web application designed to empower users with the ability to encrypt and decrypt strings using state-of-the-art cryptographic techniques. With an intuitive user interface, our application ensures data security and privacy by enabling users to safeguard their sensitive information effortlessly. Join us in advancing data security in the digital realm and contribute to this project.
 
+CipherBox is an open-source web application built to help users encrypt and decrypt text using common cryptographic techniques. It provides a simple, user-friendly interface for learning and experimenting with encryption methods in the browser.
+
+## Features
+
+- Encrypt text using AES, DES, RSA, MD5, and SHA-256
+- Decrypt supported encrypted text
+- Simple single-page web interface
+- Beginner-friendly project structure
+- Open-source contribution-friendly repository
 
 ## Project Structure
+
+```text
+CipherBox/
+├── assets/
+│   ├── Back.png
+│   ├── Shape.png
+│   ├── Vector.png
+│   ├── lock.png
+│   ├── maximize-2.png
+│   └── output.png
+├── crypto/
+│   ├── aes.js
+│   ├── base64.js
+│   ├── binary.js
+│   ├── morse.js
+│   ├── rot13.js
+│   ├── rsa.js
+│   ├── sha256.js
+│   └── keys/
+│       ├── private.pem
+│       └── public.pem
+├── css/
+│   └── styles.css
+├── public/
+│   ├── About.html
+│   ├── about.html
+│   ├── index.html
+│   └── js/
+│       └── app.js
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+└── package.json (if added in future)
 ```
-- /css
-  - styles.css        # CSS styles for the application
-- /js
-  - app.js            # JavaScript logic for the application
-- /assets             # Image assets 
-- /crypto             # Folder for cryptographic algorithm modules
-  - aes.js            # Example: AES encryption module
-  - rsa.js            # Example: RSA encryption module
-  - ...
-- README.md           # Project documentation
-- /public
-  - index.html        # Main HTML file for the web application
-- LICENSE             # License file 
+
+## Tech Stack
+
+- HTML
+- CSS
+- JavaScript
+- CryptoJS
+- JSEncrypt
+
+## Prerequisites
+
+Before running this project locally, make sure you have:
+
+- A modern web browser
+- A local web server or Python installed
+- Git installed
+
+## Getting Started
+
+### 1. Fork the repository
+
+Click the Fork button on the GitHub repository page to create your own copy.
+
+### 2. Clone your fork
+
+```bash
+git clone https://github.com/your-username/CipherBox.git
+cd CipherBox
 ```
-- **crypto**: Contains JavaScript files for each algorithm. Each file must contain a function for Encryption and Decryption each. For eg. aes.js contains aesEncrypt, aesDecrypt. Make 'n' number of files, The more the merrier :wink:. Refer the files for standard logic.
-- **app.js**: imports each function from the respective JavaScript file in /crypto directory.
 
-<hr>
+### 3. Run the app locally
 
-#### Before contributing, please review the [CONTRIBUTING GUIDELINES](./CONTRIBUTING.md).
-#### Our Code of Conduct:   [CODE OF CONDUCT](./CODE_OF_CONDUCT.md)
-#### Don't forget to register for [Hacktoberfest](https://hacktoberfest.com/) to get your rewards.
-<hr>
+You can use Python's built-in HTTP server:
 
-## Resources:
-- [Git Tutorial for Beginners](https://www.youtube.com/watch?v=DVRQoVRzMIY)
-- [What is a Pull Request?](https://www.youtube.com/watch?v=8lGpZkjnkt4)
-- [**CryptoJS Documentation**](https://cryptojs.gitbook.io/docs/#documentation)
+```bash
+python3 -m http.server 8000
+```
 
+Then open your browser and go to:
 
-## Project setup instructions:
-- **Fork the repository** to your GitHub account by clicking the "Fork" button at the top-right corner of this page. This will create a copy of the repository under your account.
-- **Clone your forked repository** to your local machine using Git. Replace `your-username` with your GitHub username:
+```text
+http://localhost:8000/public/index.html
+```
 
-   ```
-   git clone https://github.com/your-username/CipherBox.git
-   cd CipherBox
-   ```
-- **Create a new branch** for your contribution. Replace *'feature/your-feature-name'* with a descriptive branch name related to your contribution.
-- Commit your changes with a descriptive commit message:
-  ```
-  git commit -m "Add your descriptive message here"
-  ```
-  - Push your changes to your forked repository on GitHub:
-  ```
-  git push origin feature/your-feature-name
-  ```
-  <hr>
-## Getting started with contributions
+## How to Use CipherBox
 
-- ### Create a Pull Request (PR)
+1. Open the app in your browser.
+2. Type or paste the text you want to process into the input box.
+3. Select an algorithm from the dropdown menu:
+   - AES
+   - DES
+   - RSA
+   - MD5
+   - SHA-256
+4. Click Encrypt to generate encrypted text.
+5. Click Decrypt to reverse a supported encrypted value.
+6. View the output in the result panel.
 
-Visit the [CipherBox](https://github.com/gdsc-jssstu/CipherBox) repository on GitHub.
-Click the "Compare & pull request" button next to your recently pushed branch.
-Follow the PR template and guidelines. Provide details about your changes.
-Submit the PR.
+## Supported Algorithms
 
-- ### Review and Merge
+### AES
+- Symmetric encryption
+- Good for quick encrypt/decrypt operations
+- Uses a shared secret key
 
-The maintainers will review your PR and may request changes or provide feedback.
-Once your PR is approved, it will be merged into the main repository.
+### DES
+- Another symmetric encryption method
+- Older algorithm but still used in learning and educational projects
 
-<hr>
+### RSA
+- Public-key encryption
+- Used for secure communication and key exchange
 
-## Final version of the project
+### MD5
+- Hashing algorithm
+- Not reversible
+- Best used for checksums and verification
 
-<!--- Place the link to the Figma file inside () --->
-Click [here](https://www.figma.com/file/HRAxLh7LUXvFwDYZCaRf7H/Cybersec?type=design&node-id=0-1&mode=design&t=KYTiXyLrb9LlJSW9-0) for the UI design and prototype of the project.
+### SHA-256
+- Secure hashing function
+- Commonly used for data integrity
+- Not reversible
 
-<hr>
+## Example Workflow
 
-## Intended final project:
-In its intended final version, **CipherBox** aspires to become a robust and versatile string encryption web application, offering users a secure and user-friendly experience. Here are the key features and goals we envision:
--  **Comprehensive Cryptographic Suite**: CipherBox will offer a comprehensive suite of cryptographic algorithms, including industry-standard ciphers like AES, RSA, SHA-256 and DES, providing users with a wide range of encryption options to meet various security requirements.
--  **User-Friendly Interface**: Our goal is to provide an intuitive and user-friendly interface, making it easy for both beginners and experts to use CipherBox effectively. We aim to ensure that users can encrypt and decrypt strings with minimal effort.
+### Encrypt
+- Input: `Hello CipherBox`
+- Algorithm: `AES`
+- Result: encrypted text string
 
+### Decrypt
+- Input: encrypted text
+- Algorithm: `AES`
+- Result: `Hello CipherBox`
 
+## Development Notes
 
- <hr>
+The app is designed as a lightweight front-end project. Most logic is handled in:
 
-## Thank You
+- `public/index.html` for UI structure
+- `public/js/app.js` for encryption and decryption handling
+- `css/styles.css` for styling
+- `crypto/*.js` for algorithm-specific implementations
 
-Thank you for contributing to **CiphorBox**! Your contributions help make this project better for everyone.
-If you have any questions or need further assistance, please don't hesitate to reach out to us.
+## Contributing
 
-<hr>
+We welcome contributions from beginners and experienced developers.
 
-## Contributors
-A big thank you to all the contributors who have helped improve and develop CipherBox. Your contributions are highly appreciated.
+Before contributing, please read:
 
-<a href="https://github.com/gdsc-jssstu/cipherbox/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=gdsc-jssstu/cipherbox" />
-</a>
+- [CONTRIBUTING.md](./CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 
+### Good First Issues
+Some beginner-friendly tasks include:
 
-<hr>
+- improving UI styling
+- updating documentation
+- fixing small JavaScript logic bugs
+- adding missing assets
+- polishing the homepage layout
 
-### Maintainers
-Any Doubts? Feel free to contact us.
-- [Tushar Singh](https://github.com/theinit01)
+## Pull Request Process
+
+1. Create a new branch:
+```bash
+git checkout -b feature/your-feature-name
+```
+
+2. Make your changes and commit:
+```bash
+git add .
+git commit -m "Add your descriptive commit message"
+```
+
+3. Push to your fork:
+```bash
+git push origin feature/your-feature-name
+```
+
+4. Open a Pull Request on the original repository and describe your changes clearly.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
+
+## Acknowledgements
+
+Thanks to all contributors and the open-source community for supporting CipherBox.
+
+## Maintainers
+
+For questions or support, feel free to reach out through the project repository discussions or contact the maintainers via GitHub.
+
+---
+
+If you want to contribute to this project, start with a small issue, make one clean change, and submit a focused pull request.
